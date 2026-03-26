@@ -8,6 +8,10 @@ from app.data import names
 app = fastapi.FastAPI()
 
 
+@app.get("/")
+async def health_check():
+    return {"status": "server is running"}
+
 @app.get("/generate_name")
 async def generate_name(starts_with: str | None = None):
     name_choices = names

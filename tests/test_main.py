@@ -4,11 +4,11 @@ from app.data import names
 
 client = TestClient(app)
 
-# def test_health_check():
-#     """Test the root endpoint to ensure the server is running."""
-#     response = client.get("/")
-#     assert response.status_code == 200
-#     assert response.json() == {"status": "server is running"}
+def test_health_check():
+    """Test the root endpoint to ensure the server is running."""
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"status": "server is running"}
 
 def test_generate_name_no_params():
     """Test the /generate_name endpoint without any query parameters."""
