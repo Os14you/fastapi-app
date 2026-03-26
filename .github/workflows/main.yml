@@ -6,17 +6,17 @@ on:
       - main
     paths:
       - "app/**"
-      - "Dockerfile"
+      - "tests/**"
   
   pull_request:
     branches:
       - main
     paths:
       - "app/**"
-      - "Dockerfile"
+      - "tests/**"
 
 jobs:
-  containerize:
+  testing:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
