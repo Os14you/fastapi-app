@@ -1,0 +1,35 @@
+name: deploy on main
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "app/**"
+      - "Dockerfile"
+  
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "app/**"
+      - "Dockerfile"
+
+jobs:
+  containerize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      
+      - name: install uv and python
+        uses: astral-sh/setup-uv@v7.6.0
+        with:
+          python-version: "3.11" 
+          enable-cache: true
+
+      - name: run tests
+        run: | 
+          uv sync --all-extras --dev
+          uv run pytest
+
